@@ -1,0 +1,14 @@
+DO NOT MESS WITH THIS FILE!
+===========================
+formula: 1
+itterations: 4001
+current resolution: 0
+left: -0.138166
+right: -0.138003
+bottom: 0.650148
+top: 0.650266
+shifting: 0
+shifting direction: 0
+shifting delay: 10
+guessing: 1
+current palette: 1

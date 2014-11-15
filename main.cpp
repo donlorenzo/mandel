@@ -1,12 +1,13 @@
 #include "allegro.h"
 #include "math.h"
 #include "sys.hpp"
+#include <sys/types.h>
+#include <sys/stat.h>
+
+
+
   
 using namespace std;
-
-
-
-
 
 
 
@@ -17,6 +18,8 @@ int main( int argc, char *argv[] )
    install_mouse();
    install_timer();
 
+//   if( set_gfx_mode( GFX_AUTODETECT_WINDOWED, 800, 600, 0, 0 ) )
+
    if( set_gfx_mode( GFX_AUTODETECT_WINDOWED, 640, 480, 0, 0 ) )
       if( set_gfx_mode( GFX_AUTODETECT, 640, 480, 0, 0 ) )
       {
@@ -25,21 +28,22 @@ int main( int argc, char *argv[] )
          return 1;
       }
 
-          
-   BITMAP* buffer = create_bitmap( SCREEN_W, SCREEN_H );
+	textprintf_centre_ex( screen, font, SCREEN_W/2, SCREEN_H/2, 15, 0, "LOADING..." );
 
-   g_system *sys;
+	g_system *sys;
 	sys = new g_system;
    
    sys->self = sys;
 
 	do
 	{
+	    rest(1);
 	   sys->update_logic();
-	   sys->update_gfx( buffer );
-   } while( !sys->quit );
-
-   destroy_bitmap( buffer ); 
+	   sys->update_gfx( sys->buffer );
+    }while( !sys->quit );
+	
+	delete( sys );
+	
    allegro_exit();
    return 0;
 }
